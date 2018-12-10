@@ -21,3 +21,7 @@ Also, note that only 2 (sepal width, petal width) out of the 4 (sepal width, pet
 Classification is performed using this dataset in tensorflow.js and the application takes user input in the form of `Sepal Width` and `Petal Width` through the browser and the model classifies the example into one of the two categories creates above and displays them in different colors.
 
 ## Live Demo
+
+<br>
+<center> <img src = "imgs/iris_tfjs.gif"> </center>
+<br>
