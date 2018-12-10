@@ -29,6 +29,15 @@ Classification is performed using this dataset in tensorflow.js and the applicat
 
 The library used to plot the graph in JS is [chart.js](https://www.chartjs.org/). Though I have no experience in JavaScript, this library was intuitive and simple to use. Visit the [documentation](https://www.chartjs.org/docs/latest/) of the website to see what all you can do with __chart.js__.
 
+## Dependencies
+
+- tensorflowjs - 0.6.7
+- chart.js
+
+## How to use this repo
+
+For now, I haven't created a web server to host this application and therefore, the best and simplest way would be to clone this repository and then running `tfjs.html` in your browser!
+
 #### Contributing
 
 This is my first JavaScript encounter and this application may be a total turndown for JS developers out there. So I am calling out JS developers to collaborate and make this into a proper web application. I have tons of ideas for ML web applications but no JS experience to move forward with them. Raise an issue if you would like to collaborate or contribute!
