@@ -20,8 +20,7 @@
     </div>
 
     <script>
-        var xs = [];
-        var ys = [];
+
         var x = [3.5, 3. , 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3. ,
          3. , 4. , 4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3. ,
          3.4, 3.5, 3.4, 3.2, 3.1, 3.4, 4.1, 4.2, 3.1, 3.2, 3.5, 3.1, 3. ,
@@ -33,7 +32,8 @@
          3. , 3. , 2.5, 2.9, 2.5, 3.6, 3.2, 2.7, 3. , 2.5, 2.8, 3.2, 3. ,
          3.8, 2.6, 2.2, 3.2, 2.8, 2.8, 2.7, 3.3, 3.2, 2.8, 3. , 2.8, 3. ,
          2.8, 3.8, 2.8, 2.8, 2.6, 3. , 3.4, 3.1, 3. , 3.1, 3.1, 3.1, 2.7,
-         3.2, 3.3, 3. , 2.5, 3. , 3.4, 3. ]; // starts empty, to be populated with .push
+         3.2, 3.3, 3. , 2.5, 3. , 3.4, 3. ];
+
         var y = [0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1,
          0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2,
          0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.1, 0.2, 0.2, 0.1, 0.2,
@@ -45,7 +45,8 @@
          2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2. , 1.9, 2.1, 2. , 2.4, 2.3, 1.8,
          2.2, 2.3, 1.5, 2.3, 2. , 2. , 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6,
          1.9, 2. , 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9,
-         2.3, 2.5, 2.3, 1.9, 2. , 2.3, 1.8]; // starts empty, to be populated with .push
+         2.3, 2.5, 2.3, 1.9, 2. , 2.3, 1.8];
+
         var labels = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
          0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -53,52 +54,46 @@
          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+         
         var points = [];
         var iris = [];
         var pred = [];
         for(i = 0; i < labels.length; i++) {
             iris.push([x[i], y[i]])
-            //console.log(iris[i]);
         }
-        //var x_train =
+
         //Create the model
         const model = tf.sequential();
 
-        // Two fully connected layers with dropout between each:
+        // One fully connected layer
         model.add(tf.layers.dense({units: 1, activation: 'sigmoid', inputDim: 2}));
 
+        // model configuration
         model.compile({
           optimizer: tf.train.sgd(0.01),
           loss: 'binaryCrossentropy',
           metrics: ['accuracy']
         });
-        model.fit(tf.tensor(iris), tf.tensor(labels), {epochs:100}).then(() => {
-            //bestfit = model.predict(tf.tensor(xs, [xs.length, 1])).dataSync();
-            //weights, biases = model.layers[0].get_weights();
-            console.log("model fininshed training!")
 
+        // fiting the data
+        model.fit(tf.tensor(iris), tf.tensor(labels), {epochs:100}).then(() => {
+            console.log("Model finished training!")
         });
-        //document.getElementById('x').value = 1; // create a starting value for our x
+
+        // this function runs on click of the submit button
         document.getElementById("append").onclick = function(){
             var swidth = document.getElementById("swidth").value; // grab the current value for x
             var pwidth = document.getElementById("pwidth").value; // grab the current value for y
             bestfit = model.predict(tf.tensor([Number(swidth), Number(pwidth)], shape = [1, 2])).dataSync();
             pred.push(bestfit);
             var pointBackgroundColors = [];
-            xs.push(swidth); // append that value to the xs
-            ys.push(pwidth); // append that value to the ys
             points.push({x: Number(swidth), y: Number(pwidth)})
-            //document.getElementById('x').value = parseInt(x)+1; // add 1 to the x automatically
-
 
             var ctx = document.getElementById("myChart").getContext('2d'); // begin chart
-
-            // Chart data and settings:
-            //Chart.defaults.global.defaultColor = '#000000';
+            // Chart data and settings (from chartjs)
             var myChart = new Chart(ctx, {
               type: 'scatter',
               data: {
-                  //labels: xs,
                   datasets: [{
                       label: 'Iris',
                       data: points,
@@ -122,13 +117,11 @@
                               beginAtZero:true
                           },
                       }]
-
                   }
               }
             });
 
-
-
+            // Changing the color of points according to prediction
             for (i = 0; i < myChart.data.datasets[0].data.length; i++) {
                 if (pred[i] <= 0.5) {
                     pointBackgroundColors.push("#FF0000");
