@@ -36,7 +36,9 @@ The library used to plot the graph in JS is [chart.js](https://www.chartjs.org/)
 
 ## How to use this repo
 
-For now, I haven't created a web server to host this application and therefore, the best and simplest way would be to clone this repository and then running `tfjs.html` in your browser!
+For now, I haven't created a web server to host this application and therefore, the best and simplest way would be to clone this repository and then running `tfjs.html` in your browser. 
+
+Don't forget to leave a star if you liked the project!
 
 #### Contributing
 
