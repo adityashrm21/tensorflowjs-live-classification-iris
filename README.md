@@ -41,14 +41,14 @@ The library used to plot the graph in JS is [chart.js](https://www.chartjs.org/)
 - For now, I haven't created a web server to host this application and therefore, the best and simplest way would be to clone this repository and then running `tfjs.html` in your browser.
 - Make sure to let the model run first before trying to make predictions (it runs every time you refresh the page and takes around 5-10 seconds as tensorflow.js is slower than the python tensorflow).
 - You can check if the model finished running by opening the inspect element window in your browser using the `f12` key or through settings.
-- When the model finishes training, it will print `Model finished training!` to the console. 
+- When the model finishes training, it will print `Model finished training!` to the console.
 - Play all you want after this point!
 
 Don't forget to leave a star if you liked the project!
 
 #### Contributing
 
-This is my first JavaScript encounter and this application may be a total turndown for JS developers out there. So I am calling out JS developers to collaborate and make this into a proper web application. I have tons of ideas for ML web applications but no JS experience to move forward with them. Raise an issue if you would like to collaborate or contribute!
+This is my first JavaScript encounter and this application may be a total turndown for JS developers out there. I will improve the project and do some more awesome ones as I improve my JS skills. Raise an issue if you would like to collaborate or contribute or have awesome ideas to work on using TFJS!
 
 #### Resources
 
